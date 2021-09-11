@@ -1,0 +1,22 @@
+.pokedex-header {
+  background-color: #313131;
+  height: 65px;
+  width: 100%;
+}
+
+.search-button {
+  border: 1px solid black;
+  border-radius: 5px;
+  background-color: orange;
+
+  mat-icon {
+    color: #fff;
+  }
+}
+
+.search-input-field {
+  font-size: 12px;
+  ::ng-deep .mat-form-field-outline {
+    background-color: white;
+  }
+}
