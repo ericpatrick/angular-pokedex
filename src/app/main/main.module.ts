@@ -1,21 +1,25 @@
 import { NgModule } from "@angular/core";
 import { CommonModule } from "@angular/common";
-import { MatButtonModule } from "@angular/material/button";
-import { MatInputModule } from "@angular/material/input";
-import { MatIconModule } from "@angular/material/icon";
-import { MainComponent } from "./main.component";
-import { MatCardModule } from "@angular/material/card";
+import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { HttpClientModule } from "@angular/common/http";
+
+import { MatButtonModule } from "@angular/material/button";
+import { MatIconModule } from "@angular/material/icon";
+import { MatCardModule } from "@angular/material/card";
+
+import { NgxSpinnerModule } from "ngx-spinner";
+
+import { MainComponent } from "./main.component";
 import { routing } from "./main.routing";
 import { HeaderComponent } from "./components/header/header.component";
 import { PokemonListComponent } from "./components/pokemon-list/pokemon-list.component";
-import { PokemonCardComponent } from "./components/pokemon-list/components/pokemon-card/pokemon-card.component";
-import { PokemonService } from "./services/pokemon.service";
+import { PokemonCardComponent } from "./components/pokemon-card/pokemon-card.component";
+import { PokemonService, ImageObserverService } from "./services";
 import { PokemonTypesComponent } from "./components/pokemon-types/pokemon-types.component";
-import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 
 @NgModule({
   imports: [
+    // Angular Modules
     CommonModule,
     routing,
     HttpClientModule,
@@ -23,10 +27,11 @@ import { FormsModule, ReactiveFormsModule } from "@angular/forms";
     FormsModule,
 
     //Angular Material
-    MatInputModule,
     MatButtonModule,
     MatIconModule,
-    MatCardModule
+    MatCardModule,
+
+    NgxSpinnerModule
   ],
   declarations: [
     MainComponent,
@@ -35,6 +40,6 @@ import { FormsModule, ReactiveFormsModule } from "@angular/forms";
     PokemonCardComponent,
     PokemonTypesComponent
   ],
-  providers: [PokemonService]
+  providers: [PokemonService, ImageObserverService]
 })
 export class MainModule {}

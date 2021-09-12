@@ -6,7 +6,8 @@ import {
   OnInit,
   ViewChild
 } from "@angular/core";
-import { PokemonInfo } from "src/app/main/models/pokemon";
+import { IPokemonInfo } from "src/app/main/models";
+import { ImageObserverService } from "src/app/main/services";
 
 @Component({
   selector: "app-pokemon-card",
@@ -15,10 +16,7 @@ import { PokemonInfo } from "src/app/main/models/pokemon";
 })
 export class PokemonCardComponent implements OnInit, AfterViewInit {
   @Input()
-  public pokemonInfo: PokemonInfo;
-
-  @Input()
-  public iObserver: IntersectionObserver;
+  public pokemonInfo: IPokemonInfo;
 
   @ViewChild("pokemonImg")
   public pokemonImg: ElementRef<HTMLImageElement>;
@@ -26,15 +24,17 @@ export class PokemonCardComponent implements OnInit, AfterViewInit {
   @ViewChild("pokemonCard", { read: ElementRef })
   public pokemonCard: ElementRef;
 
-  constructor() {}
+  constructor(private imageObserverService: ImageObserverService) {}
 
   public ngOnInit(): void {}
 
   public ngAfterViewInit(): void {
-    this.iObserver.observe(this.pokemonImg.nativeElement);
+    this.imageObserverService.iObserver.observe(this.pokemonImg.nativeElement);
   }
 
-  public onLoadImage(): void {
+  public onLoadImage(event): void {
+    const imgPath = event.path[0].getAttribute("src");
+    this.imageObserverService.removeImage(imgPath);
     this.pokemonCard.nativeElement.style.visibility = "visible";
   }
 }

@@ -1,9 +1,10 @@
 import { Component, OnInit } from "@angular/core";
+
 import { NgxSpinnerService } from "ngx-spinner";
 import { ToastrService } from "ngx-toastr";
-import { take } from "rxjs/operators";
-import { PokemonInfo } from "../../models/pokemon";
-import { PokemonService } from "../../services/pokemon.service";
+
+import { IPokemonInfo } from "../../models/";
+import { ImageObserverService, PokemonService } from "../../services";
 
 @Component({
   selector: "app-pokemon-list",
@@ -11,22 +12,36 @@ import { PokemonService } from "../../services/pokemon.service";
   styleUrls: ["./pokemon-list.component.scss"]
 })
 export class PokemonListComponent implements OnInit {
-  public iObserver: IntersectionObserver;
+  public pokemonList: IPokemonInfo[] = [];
 
-  get pokemonList(): PokemonInfo[] {
-    return this.pokemonService.pokemons;
-  }
   constructor(
     private pokemonService: PokemonService,
     private spinner: NgxSpinnerService,
-    private toastr: ToastrService
-  ) {}
+    private toastr: ToastrService,
+    private imageObserverService: ImageObserverService
+  ) {
+    this.imageObserverService.imageLoagind.subscribe(isLoading => {
+      if (isLoading) this.showSpinner();
+      else {
+        this.updatePokemonList(this.pokemonService.pokemons);
+        this.hideSpinner();
+      }
+    });
+  }
 
-  ngOnInit(): void {
-    this.spinner.show();
-    this.pokemonService.getPokemons().subscribe(
-      response => {
-        // this.pokemonList = [response.pokemon[0]];
+  private showSpinner(): void {
+    this.spinner.show("pokemonLoading");
+  }
+
+  private hideSpinner(): void {
+    this.spinner.hide("pokemonLoading");
+  }
+
+  public ngOnInit(): void {
+    this.showSpinner();
+    this.pokemonService.pokemons$.subscribe(
+      pokemons => {
+        this.updatePokemonList(pokemons);
       },
       () => {
         this.toastr.error(
@@ -34,19 +49,28 @@ export class PokemonListComponent implements OnInit {
         );
       },
       () => {
-        this.spinner.hide();
+        this.hideSpinner();
       }
     );
 
-    this.iObserver = new IntersectionObserver((entries, self) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          const imgPath = entry.target.getAttribute("data-src");
-          entry.target.setAttribute("src", imgPath);
+    this.pokemonService.getPokemons();
+  }
 
-          self.unobserve(entry.target);
-        }
-      });
-    });
+  private updatePokemonList(pokemons: IPokemonInfo[]): void {
+    const keys = Object.keys(
+      this.imageObserverService.imageIntersectedIndexedByNum
+    );
+    if (keys.length > 0) {
+      const keysNumber = keys.map(x => parseInt(x, 10));
+      const maxnum = Math.max(...keysNumber);
+      const index = pokemons.findIndex(x => parseInt(x.num, 10) === maxnum);
+
+      let notIntersected = pokemons.slice(index);
+      const listOffset = this.imageObserverService.imageAmountOnViewport / 2;
+      if (notIntersected.length > listOffset)
+        notIntersected = notIntersected.slice(0, listOffset - 1);
+
+      this.pokemonList = pokemons.slice(0, index).concat(notIntersected);
+    } else this.pokemonList = pokemons;
   }
 }

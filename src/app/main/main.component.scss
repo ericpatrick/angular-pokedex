@@ -1,4 +1,6 @@
 :host {
-  display: block;
+  display: flex;
+  flex-direction: column;
   background: #fff url("/assets/container_bg.png");
+  height: 100%;
 }

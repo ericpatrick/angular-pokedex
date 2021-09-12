@@ -1,12 +1,11 @@
 <header class="pokedex-header">
-  <mat-form-field
-    class="search-input-field"
-    appearance="outline"
-    style="font-size: 12px"
-  >
-    <mat-label>Name or Number</mat-label>
-    <input type="text" matInput [(ngModel)]="searchTerm" />
-  </mat-form-field>
+  <input
+    class="search-input"
+    type="text"
+    [(ngModel)]="searchTerm"
+    placeholder="Name or Number"
+    (keyup.enter)="updateTerm()"
+  />
   <button mat-icon-button class="search-button" (click)="updateTerm()">
     <mat-icon>search</mat-icon>
   </button>

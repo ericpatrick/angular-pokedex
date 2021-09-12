@@ -8,9 +8,10 @@
       #pokemonImg
       mat-card-image
       [attr.data-src]="pokemonInfo.img"
+      [attr.data-num]="pokemonInfo.num"
       loading="lazy"
       [alt]="pokemonInfo.name"
-      (load)="onLoadImage()"
+      (load)="onLoadImage($event)"
     />
   </div>
   <div class="pokemon-card-info-container">

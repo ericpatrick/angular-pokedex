@@ -1,9 +1,9 @@
-export interface PokemonBasicInfo {
+export interface IPokemonBasicInfo {
   num: string;
   name: string;
 }
 
-export interface PokemonInfo extends PokemonBasicInfo {
+export interface IPokemonInfo extends IPokemonBasicInfo {
   id: number;
   img: string;
   type: string[];
@@ -17,10 +17,10 @@ export interface PokemonInfo extends PokemonBasicInfo {
   spawn_time: string;
   multipliers: number[];
   weaknesses: string[];
-  prev_evolution: PokemonBasicInfo[];
-  next_evolution: PokemonBasicInfo[];
+  prev_evolution: IPokemonBasicInfo[];
+  next_evolution: IPokemonBasicInfo[];
 }
 
 export interface PokemonListResponse {
-  pokemon: PokemonInfo[];
+  pokemon: IPokemonInfo[];
 }

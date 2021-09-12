@@ -2,6 +2,17 @@
   <app-pokemon-card
     *ngFor="let pokemon of pokemonList"
     [pokemonInfo]="pokemon"
-    [iObserver]="iObserver"
   ></app-pokemon-card>
+  <div style="height: 50px; width: 100%; position: absolute; bottom: 0">
+    <ngx-spinner
+      name="pokemonLoading"
+      bdColor="rgba(255, 255, 255, 0.8)"
+      size="small"
+      color="#000"
+      type="ball-clip-rotate"
+      size="default"
+      [fullScreen]="false"
+    >
+    </ngx-spinner>
+  </div>
 </main>
