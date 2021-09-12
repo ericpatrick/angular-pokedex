@@ -1,1 +1,7 @@
-<p>pokemon-list works!</p>
+<main class="pokemon-list-container">
+  <app-pokemon-card
+    *ngFor="let pokemon of pokemonList"
+    [pokemonInfo]="pokemon"
+    [iObserver]="iObserver"
+  ></app-pokemon-card>
+</main>

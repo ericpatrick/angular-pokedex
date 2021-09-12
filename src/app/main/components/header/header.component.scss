@@ -1,6 +1,5 @@
 .pokedex-header {
   background-color: #313131;
-  height: 65px;
   width: 100%;
 }
 
@@ -16,6 +15,8 @@
 
 .search-input-field {
   font-size: 12px;
+  margin-left: 12px;
+  margin-top: 12px;
   ::ng-deep .mat-form-field-outline {
     background-color: white;
   }

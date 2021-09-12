@@ -1,1 +1,25 @@
-<p>pokemon-card works!</p>
+<mat-card
+  #pokemonCard
+  class="pokemon-card-container"
+  style="visibility: hidden"
+>
+  <div class="pokemon-img-container">
+    <img
+      #pokemonImg
+      mat-card-image
+      [attr.data-src]="pokemonInfo.img"
+      loading="lazy"
+      [alt]="pokemonInfo.name"
+      (load)="onLoadImage()"
+    />
+  </div>
+  <div class="pokemon-card-info-container">
+    <mat-card-content>
+      <div>
+        <p class="pokemon-number">#{{ pokemonInfo.num }}</p>
+        <h3 class="pokemon-name">{{ pokemonInfo.name }}</h3>
+      </div>
+      <app-pokemon-types [types]="pokemonInfo.type"></app-pokemon-types>
+    </mat-card-content>
+  </div>
+</mat-card>

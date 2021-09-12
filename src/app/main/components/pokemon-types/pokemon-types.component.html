@@ -1,0 +1,9 @@
+<ul class="type-list">
+  <li
+    *ngFor="let type of types"
+    [ngClass]="getBgColorClass(type)"
+    class="type-item"
+  >
+    {{ type }}
+  </li>
+</ul>

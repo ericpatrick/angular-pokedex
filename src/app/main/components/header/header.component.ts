@@ -1,15 +1,19 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit } from "@angular/core";
+import { PokemonService } from "../../services/pokemon.service";
 
 @Component({
-  selector: 'app-header',
-  templateUrl: './header.component.html',
-  styleUrls: ['./header.component.scss']
+  selector: "app-header",
+  templateUrl: "./header.component.html",
+  styleUrls: ["./header.component.scss"]
 })
 export class HeaderComponent implements OnInit {
+  public searchTerm: string = "";
 
-  constructor() { }
+  constructor(private pokemonService: PokemonService) {}
 
-  ngOnInit(): void {
+  public ngOnInit(): void {}
+
+  public updateTerm(): void {
+    this.pokemonService.updateSearchTerm(this.searchTerm);
   }
-
 }

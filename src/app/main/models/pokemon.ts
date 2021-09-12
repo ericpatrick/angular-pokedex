@@ -20,3 +20,7 @@ export interface PokemonInfo extends PokemonBasicInfo {
   prev_evolution: PokemonBasicInfo[];
   next_evolution: PokemonBasicInfo[];
 }
+
+export interface PokemonListResponse {
+  pokemon: PokemonInfo[];
+}
