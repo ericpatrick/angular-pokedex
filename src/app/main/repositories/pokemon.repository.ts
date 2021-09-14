@@ -24,4 +24,8 @@ export class PokemonRepository {
 
     this._pokemons.forEach(item => (this.pokemonIndexByNum[item.num] = item));
   }
+
+  public findByNum(num: string): IPokemonInfo {
+    return this.pokemonIndexByNum[num] ? this.pokemonIndexByNum[num] : null;
+  }
 }
