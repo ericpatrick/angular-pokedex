@@ -10,15 +10,15 @@ export interface IPokemonInfo extends IPokemonBasicInfo {
   height: string;
   weight: string;
   candy: string;
-  candy_count: number;
+  candy_count?: number;
   egg: string;
   spawn_chance: number;
   avg_spawns: number;
   spawn_time: string;
   multipliers: number[];
   weaknesses: string[];
-  prev_evolution: IPokemonBasicInfo[];
-  next_evolution: IPokemonBasicInfo[];
+  prev_evolution?: IPokemonBasicInfo[];
+  next_evolution?: IPokemonBasicInfo[];
 }
 
 export interface PokemonListResponse {

@@ -41,6 +41,13 @@ Cypress.Commands.add(
       .find(`[data-test=${findSelector}]`)
 );
 
+Cypress.Commands.add("waitLoading", () => {
+  cy.get(".ngx-spinner-overlay.ng-star-inserted");
+  cy.get(".ngx-spinner-overlay.ng-star-inserted", { timeout: 10000 }).should(
+    "not.exist"
+  );
+});
+
 // load type definitions that come with Cypress module
 /// <reference types="cypress" />
 

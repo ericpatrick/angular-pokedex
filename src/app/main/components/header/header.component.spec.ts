@@ -1,16 +1,28 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from "@angular/core/testing";
+import { HttpClientTestingModule } from "@angular/common/http/testing";
+import { FormsModule } from "@angular/forms";
 
-import { HeaderComponent } from './header.component';
+import { MatButtonModule } from "@angular/material/button";
+import { MatIconModule } from "@angular/material/icon";
 
-describe('HeaderComponent', () => {
+import { HeaderComponent } from "./header.component";
+import { PokemonService } from "../../services";
+
+describe("HeaderComponent", () => {
   let component: HeaderComponent;
   let fixture: ComponentFixture<HeaderComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ HeaderComponent ]
-    })
-    .compileComponents();
+      declarations: [HeaderComponent],
+      imports: [
+        FormsModule,
+        MatIconModule,
+        MatButtonModule,
+        HttpClientTestingModule
+      ],
+      providers: [PokemonService]
+    }).compileComponents();
   });
 
   beforeEach(() => {
@@ -19,7 +31,7 @@ describe('HeaderComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should create', () => {
+  it("should create", () => {
     expect(component).toBeTruthy();
   });
 });

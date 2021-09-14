@@ -1,18 +1,15 @@
 <main class="pokemon-list-container">
+  <mat-card
+    *ngIf="pokemonList.length === 0"
+    class="pokemon-not-found"
+    data-test="pokemonNotFoundCard"
+    >Nenhum pokemon foi encontrado</mat-card
+  >
   <app-pokemon-card
     *ngFor="let pokemon of pokemonList"
     [pokemonInfo]="pokemon"
   ></app-pokemon-card>
-  <div style="height: 50px; width: 100%; position: absolute; bottom: 0">
-    <ngx-spinner
-      name="pokemonLoading"
-      bdColor="rgba(255, 255, 255, 0.8)"
-      size="small"
-      color="#000"
-      type="ball-clip-rotate"
-      size="default"
-      [fullScreen]="false"
-    >
-    </ngx-spinner>
+  <div *ngIf="isLoading" class="loader-container">
+    <div class="loader"></div>
   </div>
 </main>

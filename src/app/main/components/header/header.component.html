@@ -5,8 +5,14 @@
     [(ngModel)]="searchTerm"
     placeholder="Name or Number"
     (keyup.enter)="updateTerm()"
+    data-test="searchInput"
   />
-  <button mat-icon-button class="search-button" (click)="updateTerm()">
+  <button
+    mat-icon-button
+    class="search-button"
+    (click)="updateTerm()"
+    data-test="searchButton"
+  >
     <mat-icon>search</mat-icon>
   </button>
 </header>

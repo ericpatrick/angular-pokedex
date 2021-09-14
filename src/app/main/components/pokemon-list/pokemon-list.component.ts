@@ -1,6 +1,5 @@
 import { Component, OnInit } from "@angular/core";
 
-import { NgxSpinnerService } from "ngx-spinner";
 import { ToastrService } from "ngx-toastr";
 
 import { IPokemonInfo } from "../../models/";
@@ -13,10 +12,10 @@ import { ImageObserverService, PokemonService } from "../../services";
 })
 export class PokemonListComponent implements OnInit {
   public pokemonList: IPokemonInfo[] = [];
+  public isLoading: boolean;
 
   constructor(
     private pokemonService: PokemonService,
-    private spinner: NgxSpinnerService,
     private toastr: ToastrService,
     private imageObserverService: ImageObserverService
   ) {
@@ -30,11 +29,11 @@ export class PokemonListComponent implements OnInit {
   }
 
   private showSpinner(): void {
-    this.spinner.show("pokemonLoading");
+    this.isLoading = true;
   }
 
   private hideSpinner(): void {
-    this.spinner.hide("pokemonLoading");
+    this.isLoading = false;
   }
 
   public ngOnInit(): void {

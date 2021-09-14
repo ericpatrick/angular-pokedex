@@ -7,8 +7,6 @@ import { MatButtonModule } from "@angular/material/button";
 import { MatIconModule } from "@angular/material/icon";
 import { MatCardModule } from "@angular/material/card";
 
-import { NgxSpinnerModule } from "ngx-spinner";
-
 import { MainComponent } from "./main.component";
 import { routing } from "./main.routing";
 import { HeaderComponent } from "./components/header/header.component";
@@ -29,9 +27,7 @@ import { PokemonTypesComponent } from "./components/pokemon-types/pokemon-types.
     //Angular Material
     MatButtonModule,
     MatIconModule,
-    MatCardModule,
-
-    NgxSpinnerModule
+    MatCardModule
   ],
   declarations: [
     MainComponent,

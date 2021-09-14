@@ -6,8 +6,8 @@ import {
   OnInit,
   ViewChild
 } from "@angular/core";
-import { IPokemonInfo } from "src/app/main/models";
-import { ImageObserverService } from "src/app/main/services";
+import { IPokemonInfo } from "../../models";
+import { ImageObserverService } from "../../services";
 
 @Component({
   selector: "app-pokemon-card",
