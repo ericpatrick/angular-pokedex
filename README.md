@@ -2,6 +2,8 @@
 
 Essa é uma implementação simples de uma pokedex feita em Angular. Nessa pokedex foi implementada a lista dos 151 pokemons com um recurso de busca. Foi feito um controle de exibição das imagens para que os recursos de rede fossem consumidos conforme o usuário necessite visualizar os pokemons, seja por meio do evento de scroll ou por meio da busca.
 
+Essa pokedex foi implementada usando alguns recursos de PWA, ou seja, ela pode funcionar offline. Para isso basta visualizar todos os pokemons para que eles sejam carregados em cache
+
 ## instalação e execução
 
 Para instalar as dependências do projeto execute o seguinte comando:
@@ -31,3 +33,4 @@ Para os testes de integração é necessário dois requisitos: ter o Chrome inst
 - Utilizar uma ferramenta de report de erros (como o sentry) para facilitar a detecção de erros em produção
 - Retornar do backend imagens com resoluções melhores, ou várias imagens em diferentes resoluções, para reduzir a quantidade de media queries
 - AUmentar a cobertura de teste dos serviços e implementar testes para os componentes visuais
+- Melhorar a gestão do service-worker
